@@ -977,7 +977,7 @@ require("lazy").setup({
 	--  Here are some example plugins that I've included in the Kickstart repository.
 	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 	--
-	-- require 'kickstart.plugins.debug',
+	require("kickstart.plugins.debug"),
 	-- require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',
 	-- require 'kickstart.plugins.autopairs',
@@ -992,7 +992,7 @@ require("lazy").setup({
 	--    This is the easiest way to modularize your config.
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-	-- { import = 'custom.plugins' },
+	{ import = "custom.plugins" },
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!
@@ -1025,6 +1025,49 @@ require("termplug").setup()
 vim.keymap.set("n", "<leader>tg", "<cmd> Term gitui <CR>", { desc = "Open popup [T]erminal with [G]itUI" })
 vim.keymap.set("n", "<leader>tt", "<cmd> Term <CR>", { desc = "Open popup [T]erminal" })
 vim.keymap.set("n", "<leader>ty", "<cmd> Term yazi <CR>", { desc = "Open popup [T]erminal with [Y]azi" })
+
+local dap = require("dap")
+dap.adapters.gdb = {
+	type = "executable",
+	command = "gdb",
+	args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+}
+
+dap.configurations.c = {
+	{
+		name = "Launch",
+		type = "gdb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopAtBeginningOfMainSubprogram = false,
+	},
+	{
+		name = "Select and attach to process",
+		type = "gdb",
+		request = "attach",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		pid = function()
+			local name = vim.fn.input("Executable name (filter): ")
+			return require("dap.utils").pick_process({ filter = name })
+		end,
+		cwd = "${workspaceFolder}",
+	},
+	{
+		name = "Attach to gdbserver :1234",
+		type = "gdb",
+		request = "attach",
+		target = "localhost:1234",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+	},
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
