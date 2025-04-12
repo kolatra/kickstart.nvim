@@ -1024,6 +1024,7 @@ require("termplug").setup()
 
 vim.keymap.set("n", "<leader>tg", "<cmd> Term gitui <CR>", { desc = "Open popup [T]erminal with [G]itUI" })
 vim.keymap.set("n", "<leader>tt", "<cmd> Term <CR>", { desc = "Open popup [T]erminal" })
+vim.keymap.set("n", "<leader>ty", "<cmd> Term yazi <CR>", { desc = "Open popup [T]erminal with [Y]azi" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
