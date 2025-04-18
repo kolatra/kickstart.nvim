@@ -26,29 +26,19 @@ setKeybindN('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix 
 setKeybindT('<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode')
 
 -- set keybinds to open [t]erminal, [g]it, [y]azi
--- vim.keymap.set('n', '<leader>tg', '<cmd> Term gitui <CR>', { desc = 'Open popup [T]erminal with [G]itUI' })
 setKeybindN('<leader>tg', '<cmd> Term gitui <CR>', 'Open popup [T]erminal with [G]itUI')
--- vim.keymap.set('n', '<leader>tt', '<cmd> Term <CR>', { desc = 'Open popup [T]erminal' })
 setKeybindN('<leader>tt', '<cmd> Term <CR>', 'Open popup [T]erminal')
--- vim.keymap.set('n', '<leader>ty', '<cmd> Term yazi <CR>', { desc = 'Open popup [T]erminal with [Y]azi' })
 setKeybindN('<leader>ty', '<cmd> Term yazi <CR>', 'Open popup [T]erminal with [Y]azi')
 
 -- set a keybind to go back to the file tree
 -- NOTE: i might want to find a new one, or
 -- keep using yazi and telescope
-
--- vim.keymap.set('n', '<leader>bf', '<cmd> Ex <CR>', { desc = 'Go [B]ack to [F]ile tree' })
 setKeybindN('<leader>bf', '<cmd> Ex <CR>', 'Go [B]ack to [F]ile tree')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
--- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 setKeybindN('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
 setKeybindN('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
 setKeybindN('<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
