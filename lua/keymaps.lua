@@ -2,17 +2,17 @@
 --  See `:help vim.keymap.set()`
 
 local function setKeybindN(key, cmd, desc)
-  desc = desc or {}
+  desc = desc or ""
   vim.keymap.set('n', key, cmd, { desc = desc })
 end
 
 local function setKeybindV(key, cmd, desc)
-  desc = desc or {}
+  desc = desc or ""
   vim.keymap.set('V', key, cmd, { desc = desc })
 end
 
 local function setKeybindT(key, cmd, desc)
-  desc = desc or {}
+  desc = desc or ""
   vim.keymap.set('t', key, cmd, { desc = desc })
 end
 
